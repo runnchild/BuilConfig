@@ -1,0 +1,68 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+//apply from: 'mvn.gradle'
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation "com.android.tools.build:gradle:4.2.0-alpha07"
+//    implementation 'org.javassist:javassist:3.22.0-GA'//用于代码注入
+//    implementation 'com.android.tools.build:transform-api:1.5.0'
+}
+repositories{
+    jcenter()
+    mavenCentral()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {//用于发布本地maven
+            pom.groupId = "com.rongc"
+            pom.artifactId = "config"
+            pom.version = "1.0"
+            repository(url: uri("${rootProject.rootDir.parent}/repo/"))
+        }
+    }
+}
+task sourcesJar(type: Jar) {
+    from project.sourceSets.main.groovy.srcDirs
+    classifier = 'sources'
+}
+task javadocJar(type: Jar, dependsOn: groovydoc) {
+    classifier = 'javadoc'
+    from groovydoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+//task androidJavadocs(type: Javadoc) {
+//    failOnError = false
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//
+//    android.libraryVariants.all { variant ->
+//        if (variant.name == 'release') {
+//            owner.classpath += variant.getJavaCompile().classpath
+//        }
+//    }
+//
+//    exclude '**/R.html', '**/R.*.html', '**/index.html'
+//    options.encoding "UTF-8"
+//    options.charSet "UTF-8"
+//}
+//
+//task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+//    archiveClassifier.set('javadoc')
+//    from androidJavadocs.destinationDir
+//}
+//
+//task androidSourcesJar(type: Jar) {
+//    archiveClassifier.set('sources')
+//    from android.sourceSets.main.java.srcDirs
+//}
+//
+//artifacts {
+//    archives androidSourcesJar
+//    archives androidJavadocsJar
+//}
