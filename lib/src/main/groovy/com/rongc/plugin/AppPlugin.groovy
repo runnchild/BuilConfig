@@ -11,7 +11,6 @@ class AppPlugin implements Plugin<Project> {
     void apply(Project project) {
         def ext = project.extensions.create("signingConfig", KeyStoreExt)
         project.afterEvaluate {
-            println("config: $ext")
             project.android.defaultConfig.setSigningConfig(ext)
         }
         project.with {
