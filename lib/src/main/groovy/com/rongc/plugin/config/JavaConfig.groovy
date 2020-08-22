@@ -6,11 +6,6 @@ import org.gradle.api.Project
 class JavaConfig {
     static void with(Project project) {
         project.with {
-//            plugins {
-//                id 'java-library'
-//                id 'kotlin'
-//                id 'kotlin-kapt'
-//            }
             apply plugin: 'java-library'
             apply plugin: 'kotlin'
             apply plugin: 'kotlin-kapt'

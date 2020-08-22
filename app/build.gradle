@@ -1,1 +1,6 @@
 apply plugin: 'com.rongc.app'
+
+signingConfig {
+    storeFile file("./gradlew")
+    keyAlias "psn "
+}
