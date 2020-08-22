@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    apply from: "config.gradle"
+    apply from: "https://gitee.com/qiurongc/codes/s3wgd76acpzm8bx5fo49u32/raw?blob_name=config.gradle"
 
     repositories {
         maven {
@@ -11,10 +11,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradle_version"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.rongc:config:1.0'
-//        classpath 'com.rongc:config:0.0.2'
+        classpath classpaths
         classpath 'com.novoda:bintray-release:0.9.2'
 //        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
