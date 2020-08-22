@@ -22,7 +22,7 @@ class Mvn {
 
                         pom.project {
                             version = repo_version
-                            groupId = 'com.psnlove'
+                            groupId = group_id
                             artifactId = module_name
                             packaging = 'aar'
                         }
