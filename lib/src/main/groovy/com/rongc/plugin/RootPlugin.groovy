@@ -21,9 +21,6 @@ class RootPlugin implements Plugin<Project> {
             apply from: configFile.toString()
 
             repositories {
-                maven {
-                    url = uri("${rootProject.projectDir.parent}/repo/")
-                }
                 mavenLocal()
                 google()
                 jcenter()

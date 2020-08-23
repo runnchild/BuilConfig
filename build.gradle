@@ -3,17 +3,13 @@ buildscript {
     apply from: "https://gitee.com/qiurongc/codes/s3wgd76acpzm8bx5fo49u32/raw?blob_name=config.gradle"
 
     repositories {
-        maven {
-            url = uri("${rootProject.projectDir.parent}/repo/")
-        }
         mavenLocal()
         google()
         jcenter()
     }
     dependencies {
         classpath classpaths
-        classpath 'com.novoda:bintray-release:0.9.2'
-//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath bintrayPlugin
     }
 }
 
