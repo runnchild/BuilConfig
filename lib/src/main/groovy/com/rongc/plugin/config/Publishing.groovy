@@ -1,9 +1,9 @@
 package com.rongc.plugin.config
 
-import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.Project
-import org.gradle.api.tasks.javadoc.Javadoc
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.tasks.bundling.Jar
+import org.gradle.api.tasks.javadoc.Javadoc
 
 class Publishing {
     static void with(Project project) {
@@ -12,7 +12,6 @@ class Publishing {
                 return
             }
             apply plugin: 'maven-publish'
-            apply plugin: 'com.jfrog.bintray'
 
             def isJavaPlugin = project.plugins.findPlugin("java-library")
 
@@ -44,31 +43,57 @@ class Publishing {
                 }
             }
 
-            bintray {
-                user = repo_userOrg
-                println("REPO_KEY=${System.getenv("REPO_KEY")}")
+            def repoUserOrg = findProperty("repo_userOrg")
+//            try {
+//                project.dependencies.each {
+////        def v = it.module("com.jfrog.bintray.gradle:gradle-bintray-plugin").name
+//                    try {
+//                        def v = it.module("com.jfrog.bintray.gradle:gradle-android-plugin-aspectjx").name
+//                        println("each = $v")
+//                    } catch(Exception e) {
+//                        println("Exception each = $e")
+//                    }
+//
+//                }
+//                project.dependencies.module("com.jfrog.bintray.gradle:gradle-bintray-plugin")
+//                if (repoUserOrg == null || repoUserOrg == "") {
+//                    println("需要在gradle.properties里添加仓库的基本信息，eg： repo_userOrg")
+//                }
+//                println("each = $v")
+//            } catch (Exception ignore) {
+//                if (repoUserOrg != null) {
+//                    println("如果需要发布到Jcenter的能力，需要在根目录的build.gradle下引入gradle-bintray-plugin插件")
+//                }
+//                repoUserOrg = ""
+//            }
+            if (repoUserOrg != null && repoUserOrg != "") {
+                apply plugin: 'com.jfrog.bintray'
+                bintray {
+                    user = repoUserOrg
+                    println("REPO_KEY=${System.getenv("REPO_KEY")}")
 
-                key = System.getenv("REPO_KEY")
-                dryRun = false
-                //[Default: false] Whether to run this as dry-run, without deploying
-                publish = true
-                //[Default: false] Whether version should be auto published after an upload
-                override = true
-                //[Default: false] Whether to override version artifacts already published
-                publications = ['release']
-                pkg {
-                    repo = 'maven'
-                    name = module_name
-                    userOrg = repo_userOrg
-                    licenses = ['Apache-2.0']
-                    vcsUrl = repo_website
+                    key = System.getenv("REPO_KEY")
+                    dryRun = false
+                    //[Default: false] Whether to run this as dry-run, without deploying
+                    publish = true
+                    //[Default: false] Whether version should be auto published after an upload
+                    override = true
+                    //[Default: false] Whether to override version artifacts already published
+                    publications = ['release']
+                    pkg {
+                        repo = 'maven'
+                        name = module_name
+                        userOrg = repoUserOrg
+                        licenses = ['Apache-2.0']
+                        vcsUrl = repo_website
 
-                    version {
-                        name = repo_version
-                        desc = repo_desc
-                        released = new Date()
-                        vcsTag = repo_version
-                        attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+                        version {
+                            name = repo_version
+                            desc = repo_desc
+                            released = new Date()
+                            vcsTag = repo_version
+                            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+                        }
                     }
                 }
             }
