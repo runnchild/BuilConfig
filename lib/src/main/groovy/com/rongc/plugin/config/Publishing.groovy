@@ -1,7 +1,8 @@
 package com.rongc.plugin.config
 
-import org.gradle.api.Plugin
+import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.Project
+import org.gradle.api.tasks.javadoc.Javadoc
 import org.gradle.api.publish.maven.MavenPublication
 
 class Publishing {
@@ -20,8 +21,8 @@ class Publishing {
                             release(MavenPublication) {
                                 // Applies the component for the release build variant.
                                 from isJavaPlugin ? components.java : components.release
-//                                artifact sourcesJar
-//                                artifact javadocJar
+                                artifact androidSourcesJar
+                                artifact androidJavadocsJar
 
                                 // You can then customize attributes of the publication as shown below.
                                 groupId = group_id
@@ -69,7 +70,33 @@ class Publishing {
                         }
                     }
                 }
-            }
+
+                tasks.create("androidJavadocs", Javadoc.class) {
+                    failOnError = false
+                    source = android.sourceSets.main.java.srcDirs
+                    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+
+                    android.libraryVariants.all { variant ->
+                        if (variant.name == 'release') {
+                            owner.classpath += variant.getJavaCompile().classpath
+                        }
+                    }
+
+                    exclude '**/R.html', '**/R.*.html', '**/index.html'
+                    options.encoding "UTF-8"
+                    options.charSet "UTF-8"
+                }
+
+                tasks.create("androidJavadocsJar", Jar.class) {
+                    archiveClassifier.set('javadoc')
+                    from androidJavadocs.destinationDir
+                }
+                androidJavadocsJar.dependsOn androidJavadocs
+
+                tasks.create("androidSourcesJar", Jar.class) {
+                    archiveClassifier.set('sources')
+                    from android.sourceSets.main.java.srcDirs
+                }}
         }
     }
 }
