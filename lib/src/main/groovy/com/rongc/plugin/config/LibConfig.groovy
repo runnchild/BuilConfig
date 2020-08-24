@@ -18,7 +18,7 @@ class LibConfig {
                     targetSdkVersion 29
                     versionCode 1
                     versionName "1.0"
-
+                    consumerProguardFiles 'proguard-rules.pro'
                     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                 }
 
@@ -58,6 +58,11 @@ class LibConfig {
                     arguments {
                         arg("MODULE_NAME", project.module_name)
                         arg("PROJECT_NAME", project.name)
+                    }
+                }
+                sourceSets {
+                    main {
+                        jniLibs.srcDirs = ['libs']
                     }
                 }
             }

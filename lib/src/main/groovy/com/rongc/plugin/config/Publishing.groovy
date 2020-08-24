@@ -1,6 +1,8 @@
 package com.rongc.plugin.config
 
 import org.gradle.api.Project
+import org.gradle.api.artifacts.ExcludeRule
+import org.gradle.api.artifacts.ModuleDependency
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.javadoc.Javadoc
@@ -29,6 +31,30 @@ class Publishing {
                             groupId = group_id
                             artifactId = module_name
                             version = repo_version
+
+                            //The publication doesn't know about our dependencies, so we have to manually add them to the pom
+//                            pom.withXml {
+//                                // for dependencies and exclusions
+//                                def dependenciesNode = asNode().appendNode('dependencies')
+//                                configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+//                                    def dependencyNode = dependenciesNode.appendNode('dependency')
+//                                    dependencyNode.appendNode('groupId', dp.group)
+//                                    dependencyNode.appendNode('artifactId', dp.name)
+//                                    dependencyNode.appendNode('version', dp.version)
+//
+//                                    // for exclusions
+//                                    if (dp.excludeRules.size() > 0) {
+//                                        def exclusions = dependencyNode.appendNode('exclusions')
+//                                        dp.excludeRules.each { ExcludeRule ex ->
+//                                            println("dp.excludeRules = ${ex.metaPropertyValues}")
+//
+//                                            def exclusion = exclusions.appendNode('exclusion')
+//                                            exclusion.appendNode('groupId', ex.group)
+//                                            exclusion.appendNode('artifactId', ex.module)
+//                                        }
+//                                    }
+//                                }
+//                            }
                         }
                         // Creates a Maven publication called “debug”.
 //                            debug(MavenPublication) {
