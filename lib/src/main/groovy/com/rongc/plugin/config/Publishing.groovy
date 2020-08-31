@@ -1,8 +1,7 @@
 package com.rongc.plugin.config
 
+import org.apache.tools.ant.types.resources.comparators.Date
 import org.gradle.api.Project
-import org.gradle.api.artifacts.ExcludeRule
-import org.gradle.api.artifacts.ModuleDependency
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.javadoc.Javadoc
@@ -161,6 +160,13 @@ class Publishing {
                     archiveClassifier.set('sources')
                     from android.sourceSets.main.java.srcDirs
                 }
+
+//                tasks.withType(Javadoc) {
+//                    options.addStringOption('Xdoclint:none', '-quiet')
+//                    options.addStringOption('encoding', 'UTF-8')
+//                    options.addStringOption('charSet', 'UTF-8')
+//                }
+                tasks.withType(Javadoc).all { enabled = false }
             }
         }
     }
