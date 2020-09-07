@@ -21,6 +21,9 @@ class AppPlugin implements Plugin<Project> {
                     applicationId findProperty('APPLICATION_ID')
                 }
             }
+            dependencies {
+                debugImplementation "com.squareup.leakcanary:leakcanary-android:2.4"
+            }
         }
     }
 }
