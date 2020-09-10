@@ -21,13 +21,13 @@ class AppPlugin implements Plugin<Project> {
                     applicationId findProperty('APPLICATION_ID')
                 }
                 buildTypes {
-                    canary {
-                        initWith debug
-                    }
+//                    canary {
+//                        initWith debug
+//                    }
                 }
             }
             dependencies {
-                canaryImplementation "com.squareup.leakcanary:leakcanary-android:2.4"
+                debugImplementation "com.squareup.leakcanary:leakcanary-android:2.4"
             }
         }
     }

@@ -71,9 +71,13 @@ class LibConfig {
                 implementation fileTree(dir: "libs", include: ["*.jar"])
                 implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+                implementation "androidx.multidex:multidex:2.0.1"
+                implementation 'androidx.activity:activity:1.1.0'
+                compileOnly 'androidx.fragment:fragment-ktx:1.2.5'
+                implementation 'androidx.fragment:fragment:1.2.5'
                 implementation 'androidx.core:core-ktx:1.3.1'
                 implementation 'androidx.appcompat:appcompat:1.2.0'
-                implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+                implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
                 implementation 'com.google.android.material:material:1.3.0-alpha02'
                 testImplementation 'junit:junit:4.13'
                 androidTestImplementation 'androidx.test.ext:junit:1.1.1'
