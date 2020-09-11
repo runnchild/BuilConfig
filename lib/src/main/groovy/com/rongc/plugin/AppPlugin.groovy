@@ -28,6 +28,7 @@ class AppPlugin implements Plugin<Project> {
             }
             dependencies {
                 debugImplementation "com.squareup.leakcanary:leakcanary-android:2.4"
+                implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
             }
         }
     }

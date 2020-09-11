@@ -69,11 +69,11 @@ class LibConfig {
 
             dependencies {
                 implementation fileTree(dir: "libs", include: ["*.jar"])
-                implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+                compileOnly "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
                 implementation "androidx.multidex:multidex:2.0.1"
                 implementation 'androidx.activity:activity:1.1.0'
-                compileOnly 'androidx.fragment:fragment-ktx:1.2.5'
+                implementation 'androidx.fragment:fragment-ktx:1.2.5'
                 implementation 'androidx.fragment:fragment:1.2.5'
                 implementation 'androidx.core:core-ktx:1.3.1'
                 implementation 'androidx.appcompat:appcompat:1.2.0'
