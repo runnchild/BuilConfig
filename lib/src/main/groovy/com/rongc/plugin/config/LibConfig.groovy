@@ -11,11 +11,11 @@ class LibConfig {
             apply plugin: 'kotlin-kapt'
 
             android {
-                compileSdkVersion 29
+                compileSdkVersion 30
 
                 defaultConfig {
-                    minSdkVersion 23
-                    targetSdkVersion 29
+                    minSdkVersion 21
+                    targetSdkVersion 30
                     versionCode 1
                     versionName "1.0"
                     consumerProguardFiles 'proguard-rules.pro'
