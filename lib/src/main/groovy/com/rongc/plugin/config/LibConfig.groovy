@@ -32,9 +32,12 @@ class LibConfig {
                     dataBinding = true
                     viewBinding = false
                 }
-                packagingOptions {
-                    exclude 'META-INF/*.kotlin_module'
-                    exclude 'META-INF/xxx'
+//                packagingOptions {
+//                    exclude 'META-INF/*.kotlin_module'
+//                    exclude 'META-INF/xxx'
+//                }
+                compileOptions {
+                    kotlinOptions.freeCompilerArgs += ['-module-name', "${group_id}.$module_name"]
                 }
                 androidExtensions {
                     experimental = true

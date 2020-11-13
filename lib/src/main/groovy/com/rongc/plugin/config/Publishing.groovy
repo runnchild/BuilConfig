@@ -30,40 +30,18 @@ class Publishing {
                             groupId = group_id
                             artifactId = module_name
                             version = repo_version
-
-                            //The publication doesn't know about our dependencies, so we have to manually add them to the pom
-//                            pom.withXml {
-//                                // for dependencies and exclusions
-//                                def dependenciesNode = asNode().appendNode('dependencies')
-//                                configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
-//                                    def dependencyNode = dependenciesNode.appendNode('dependency')
-//                                    dependencyNode.appendNode('groupId', dp.group)
-//                                    dependencyNode.appendNode('artifactId', dp.name)
-//                                    dependencyNode.appendNode('version', dp.version)
-//
-//                                    // for exclusions
-//                                    if (dp.excludeRules.size() > 0) {
-//                                        def exclusions = dependencyNode.appendNode('exclusions')
-//                                        dp.excludeRules.each { ExcludeRule ex ->
-//                                            println("dp.excludeRules = ${ex.metaPropertyValues}")
-//
-//                                            def exclusion = exclusions.appendNode('exclusion')
-//                                            exclusion.appendNode('groupId', ex.group)
-//                                            exclusion.appendNode('artifactId', ex.module)
-//                                        }
-//                                    }
-//                                }
-//                            }
                         }
                         // Creates a Maven publication called “debug”.
-//                            debug(MavenPublication) {
-//                                // Applies the component for the debug build variant.
-//                                from components.debug
+//                        debug(MavenPublication) {
+//                            artifact isJavaPlugin ? sourcesJar : androidSourcesJar
+//                            artifact isJavaPlugin ? javadocJar : androidJavadocsJar
+//                            // Applies the component for the debug build variant.
+//                            from components.debug
 //
-//                                groupId = group_id
-//                                artifactId = module_name
-//                                version = repo_version
-//                            }
+//                            groupId = group_id
+//                            artifactId = module_name
+//                            version = repo_version
+//                        }
                     }
                 }
             }
@@ -151,14 +129,14 @@ class Publishing {
                 }
 
                 tasks.create("androidJavadocsJar", Jar.class) {
-                    archiveClassifier.set('javadoc')
                     from androidJavadocs.destinationDir
+                    archiveClassifier.set('javadoc')
                 }
                 androidJavadocsJar.dependsOn androidJavadocs
 
                 tasks.create("androidSourcesJar", Jar.class) {
+                    from android.sourceSets.main.java.getSrcDirs()
                     archiveClassifier.set('sources')
-                    from android.sourceSets.main.java.srcDirs
                 }
 
 //                tasks.withType(Javadoc) {
