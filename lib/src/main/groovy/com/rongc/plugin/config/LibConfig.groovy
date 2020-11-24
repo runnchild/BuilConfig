@@ -12,19 +12,20 @@ class LibConfig {
 
             android {
                 compileSdkVersion 30
-
+                def code = (findProperty("VERSION_CODE") ?: 1) as Integer
+                def name = (findProperty("VERSION_NAME") ?: "1.0").toString()
                 defaultConfig {
                     minSdkVersion 21
                     targetSdkVersion 30
-                    versionCode 1
-                    versionName "1.0"
+                    versionCode code
+                    versionName name
                     consumerProguardFiles 'proguard-rules.pro'
                     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                 }
 
                 buildTypes {
                     release {
-                        minifyEnabled false
+                        minifyEnabled true
                         proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
                     }
                 }
@@ -37,7 +38,7 @@ class LibConfig {
 //                    exclude 'META-INF/xxx'
 //                }
                 compileOptions {
-                    kotlinOptions.freeCompilerArgs += ['-module-name', "${group_id}.$module_name"]
+                    kotlinOptions.freeCompilerArgs += ['-module-name', "${group_id}.${module_name}.${project.name}"]
                 }
                 androidExtensions {
                     experimental = true
@@ -67,6 +68,13 @@ class LibConfig {
                     main {
                         jniLibs.srcDirs = ['libs']
                     }
+                }
+
+                lintOptions {
+                    checkReleaseBuilds false
+                    // Or, if you prefer, you can continue to check for errors in release builds,
+                    // but continue the build even when errors are found:
+                    abortOnError false
                 }
             }
 

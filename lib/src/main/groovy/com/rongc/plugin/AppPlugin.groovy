@@ -9,18 +9,25 @@ import org.gradle.api.Project
 class AppPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
-        def ext = project.extensions.create("signingConfig", KeyStoreExt)
-        project.afterEvaluate {
-            project.android.defaultConfig.setSigningConfig(ext)
-        }
+//        def ext = project.extensions.create("signingConfig", KeyStoreExt)
+//        project.afterEvaluate {
+//            project.android.defaultConfig.setSigningConfig(ext)
+//            println("signingConfig==> ${project.android.defaultConfig.signingConfigs}")
+//        }
         project.with {
             apply plugin: 'com.android.application'
             LibConfig.with(project)
             android {
                 defaultConfig {
                     applicationId findProperty('APPLICATION_ID')
+                    resConfigs "zh"
                 }
                 buildTypes {
+                    release {
+                        minifyEnabled true
+                        shrinkResources true
+                        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                    }
 //                    canary {
 //                        initWith debug
 //                    }

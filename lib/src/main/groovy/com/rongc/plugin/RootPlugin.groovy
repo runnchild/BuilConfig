@@ -11,13 +11,13 @@ class RootPlugin implements Plugin<Project> {
     void apply(Project target) {
         target.with {
             def configFile = file("${rootProject.projectDir}/config.gradle")
-//            if (!configFile.exists()) {
-//                configFile.createNewFile()
-//                configFile << "ext {\n" +
-//                        "    kotlin_version = \"1.3.72\"\n" +
-//                        "    gradle_version = '4.2.0-alpha07'\n" +
-//                        "}"
-//            }
+            if (!configFile.exists()) {
+                configFile.createNewFile()
+                configFile << "ext {\n" +
+                        "    kotlin_version = \"1.4.10\"\n" +
+                        "    gradle_version = '4.1.1'\n" +
+                        "}"
+            }
             apply from: configFile.toString()
 
             repositories {

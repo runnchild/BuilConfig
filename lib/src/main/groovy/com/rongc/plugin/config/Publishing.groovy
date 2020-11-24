@@ -32,16 +32,16 @@ class Publishing {
                             version = repo_version
                         }
                         // Creates a Maven publication called “debug”.
-//                        debug(MavenPublication) {
-//                            artifact isJavaPlugin ? sourcesJar : androidSourcesJar
-//                            artifact isJavaPlugin ? javadocJar : androidJavadocsJar
-//                            // Applies the component for the debug build variant.
-//                            from components.debug
-//
-//                            groupId = group_id
-//                            artifactId = module_name
-//                            version = repo_version
-//                        }
+                        debug(MavenPublication) {
+                            artifact isJavaPlugin ? sourcesJar : androidSourcesJar
+                            artifact isJavaPlugin ? javadocJar : androidJavadocsJar
+                            // Applies the component for the debug build variant.
+                            from isJavaPlugin ? components.java : components.debug
+
+                            groupId = group_id
+                            artifactId = module_name
+                            version = repo_version
+                        }
                     }
                 }
             }
