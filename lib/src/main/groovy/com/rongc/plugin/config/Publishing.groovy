@@ -20,17 +20,17 @@ class Publishing {
                 publishing {
                     publications {
                         // Creates a Maven publication called "release".
-                        release(MavenPublication) {
-                            // Applies the component for the release build variant.
-                            from isJavaPlugin ? components.java : components.release
-                            artifact isJavaPlugin ? sourcesJar : androidSourcesJar
-                            artifact isJavaPlugin ? javadocJar : androidJavadocsJar
-
-                            // You can then customize attributes of the publication as shown below.
-                            groupId = group_id
-                            artifactId = module_name
-                            version = repo_version
-                        }
+//                        release(MavenPublication) {
+//                            // Applies the component for the release build variant.
+//                            from isJavaPlugin ? components.java : components.release
+//                            artifact isJavaPlugin ? sourcesJar : androidSourcesJar
+//                            artifact isJavaPlugin ? javadocJar : androidJavadocsJar
+//
+//                            // You can then customize attributes of the publication as shown below.
+//                            groupId = group_id
+//                            artifactId = module_name
+//                            version = repo_version
+//                        }
                         // Creates a Maven publication called “debug”.
                         debug(MavenPublication) {
                             artifact isJavaPlugin ? sourcesJar : androidSourcesJar
