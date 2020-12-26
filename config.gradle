@@ -1,4 +1,4 @@
 ext {
-    kotlin_version = "1.4.10"
+    kotlin_version = "1.4.21"
     gradle_version = '4.1.1'
 }

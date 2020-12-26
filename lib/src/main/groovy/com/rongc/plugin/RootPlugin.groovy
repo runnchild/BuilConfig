@@ -14,7 +14,7 @@ class RootPlugin implements Plugin<Project> {
             if (!configFile.exists()) {
                 configFile.createNewFile()
                 configFile << "ext {\n" +
-                        "    kotlin_version = \"1.4.10\"\n" +
+                        "    kotlin_version = \"1.4.21\"\n" +
                         "    gradle_version = '4.1.1'\n" +
                         "}"
             }

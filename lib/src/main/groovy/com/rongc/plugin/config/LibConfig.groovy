@@ -7,7 +7,7 @@ class LibConfig {
     static with(Project project) {
         project.with {
             apply plugin: 'kotlin-android'
-            apply plugin: 'kotlin-android-extensions'
+            apply plugin: 'kotlin-parcelize'
             apply plugin: 'kotlin-kapt'
 
             android {
@@ -40,9 +40,9 @@ class LibConfig {
                 compileOptions {
                     kotlinOptions.freeCompilerArgs += ['-module-name', "${group_id}.${module_name}.${project.name}"]
                 }
-                androidExtensions {
-                    experimental = true
-                }
+//                androidExtensions {
+//                    experimental = true
+//                }
                 dexOptions {
                     preDexLibraries true
                     maxProcessCount 8
@@ -84,9 +84,9 @@ class LibConfig {
 
                 implementation "androidx.multidex:multidex:2.0.1"
                 implementation 'androidx.activity:activity:1.1.0'
+                implementation 'androidx.activity:activity-ktx:1.1.0'
                 implementation 'androidx.fragment:fragment-ktx:1.2.5'
-                implementation 'androidx.fragment:fragment:1.2.5'
-                implementation 'androidx.core:core-ktx:1.3.1'
+                implementation 'androidx.core:core-ktx:1.3.2'
                 implementation 'androidx.appcompat:appcompat:1.2.0'
                 implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
                 implementation 'com.google.android.material:material:1.3.0-alpha02'
