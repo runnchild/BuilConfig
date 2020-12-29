@@ -1,0 +1,54 @@
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            config(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = group_id
+                artifactId = module_name
+                version = repo_version
+            }
+            // Creates a Maven publication called “debug”.
+//            debug(MavenPublication) {
+//                // Applies the component for the debug build variant.
+//                from components.debug
+//
+//                groupId = group_id
+//                artifactId = module_name
+//                version = repo_version
+//            }
+        }
+    }
+}
+
+bintray {
+    user = repo_userOrg
+    key = System.getenv("REPO_KEY")
+    dryRun = false //[Default: false] Whether to run this as dry-run, without deploying
+    publish = true //[Default: false] Whether version should be auto published after an upload
+    override = true //[Default: false] Whether to override version artifacts already published
+    publications = ['MyPublication']
+    pkg {
+        repo = 'maven'
+        name = module_name
+        userOrg = repo_userOrg
+        licenses = ['Apache-2.0']
+        vcsUrl = repo_website
+
+        version {
+            name = repo_version
+            desc = repo_desc
+            released = new Date()
+            vcsTag = repo_version
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
+}

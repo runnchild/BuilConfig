@@ -1,2 +1,1 @@
-rootProject.name='BuildConfig'
-include ':app', ':lib'
+rootProject.name = "BuildConfig"
