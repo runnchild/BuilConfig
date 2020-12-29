@@ -11,7 +11,7 @@ class JavaPlugin implements Plugin<Project> {
     void apply(Project target) {
         target.with {
             JavaConfig.with(target)
-            //Publishing.with(project)
+            Publishing.with(project)
         }
     }
 }
