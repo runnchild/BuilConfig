@@ -2,7 +2,6 @@ package com.rongc.plugin
 
 
 import com.rongc.plugin.config.LibConfig
-import com.rongc.plugin.ext.KeyStoreExt
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

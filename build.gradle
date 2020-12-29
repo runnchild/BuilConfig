@@ -8,11 +8,51 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath classpaths
+        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath bintrayPlugin
     }
 }
-
-allprojects {
-    apply plugin: "com.rongc.root"
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
 }
+
+apply from: "bintray.gradle"
+
+repositories {
+    // 需要添加 jcenter 否则会提示找不到 gradlePlugin
+    jcenter()
+}
+
+gradlePlugin {
+    plugins {
+        app {
+            id = 'com.rongc.app'
+            implementationClass = 'com.rongc.plugin.AppPlugin'
+        }
+        lib {
+            id = 'com.rongc.lib'
+            implementationClass = 'com.rongc.plugin.LibPlugin'
+        }
+        java {
+            id = 'com.rongc.java'
+            implementationClass = 'com.rongc.plugin.JavaPlugin'
+        }
+        root {
+            id = 'com.rongc.root'
+            implementationClass = 'com.rongc.plugin.RootPlugin'
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from project.sourceSets.main.groovy.srcDirs
+    classifier = 'sources'
+}
+task javadocJar(type: Jar, dependsOn: groovydoc) {
+    classifier = 'javadoc'
+    from groovydoc.destinationDir
+}
+//allprojects {
+//    apply plugin: "com.rongc.root"
+//}

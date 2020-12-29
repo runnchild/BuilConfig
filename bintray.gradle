@@ -5,7 +5,7 @@ afterEvaluate {
     publishing {
         publications {
             // Creates a Maven publication called "release".
-            MyPublication(MavenPublication) {
+            config(MavenPublication) {
                 // Applies the component for the release build variant.
                 from components.java
                 artifact sourcesJar
@@ -14,7 +14,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = group_id
                 artifactId = module_name
-                version = repo_version
+                version = REPO_VERSION
             }
             // Creates a Maven publication called “debug”.
 //            debug(MavenPublication) {

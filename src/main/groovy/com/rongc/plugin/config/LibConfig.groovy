@@ -30,8 +30,7 @@ class LibConfig {
                     }
                 }
                 buildFeatures {
-                    dataBinding = true
-                    viewBinding = false
+                    dataBinding true
                 }
 //                packagingOptions {
 //                    exclude 'META-INF/*.kotlin_module'
@@ -88,8 +87,8 @@ class LibConfig {
                 implementation 'androidx.fragment:fragment-ktx:1.2.5'
                 implementation 'androidx.core:core-ktx:1.3.2'
                 implementation 'androidx.appcompat:appcompat:1.2.0'
-                implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
-                implementation 'com.google.android.material:material:1.3.0-alpha02'
+                implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+                implementation 'com.google.android.material:material:1.3.0-beta01'
                 testImplementation 'junit:junit:4.13'
                 androidTestImplementation 'androidx.test.ext:junit:1.1.1'
                 androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
