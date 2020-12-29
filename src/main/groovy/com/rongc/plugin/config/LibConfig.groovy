@@ -13,7 +13,7 @@ class LibConfig {
             android {
                 compileSdkVersion 30
                 def code = (findProperty("VERSION_CODE") ?: 1) as Integer
-                def name = (findProperty("VERSION_NAME") ?: "1.0").toString()
+                def name = (findProperty("VERSION_NAME") ?: repo_version).toString()
                 defaultConfig {
                     minSdkVersion 21
                     targetSdkVersion 30
