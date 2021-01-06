@@ -35,7 +35,7 @@ bintray {
     dryRun = false //[Default: false] Whether to run this as dry-run, without deploying
     publish = true //[Default: false] Whether version should be auto published after an upload
     override = true //[Default: false] Whether to override version artifacts already published
-    publications = ['MyPublication']
+    publications = ['config']
     pkg {
         repo = 'maven'
         name = module_name
@@ -44,10 +44,10 @@ bintray {
         vcsUrl = repo_website
 
         version {
-            name = repo_version
+            name = REPO_VERSION
             desc = repo_desc
             released = new Date()
-            vcsTag = repo_version
+            vcsTag = REPO_VERSION
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }

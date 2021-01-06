@@ -82,7 +82,7 @@ class Publishing {
                     //[Default: false] Whether version should be auto published after an upload
                     override = true
                     //[Default: false] Whether to override version artifacts already published
-                    publications = ['release']
+                    publications = ['debug']
                     pkg {
                         repo = 'maven'
                         name = module_name
