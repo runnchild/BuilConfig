@@ -40,7 +40,7 @@ class Publishing {
 
                             groupId = group_id
                             artifactId = module_name
-                            version = repo_version
+                            version = repo_version ?: findProperty("VERSION_NAME")
                         }
                     }
                 }

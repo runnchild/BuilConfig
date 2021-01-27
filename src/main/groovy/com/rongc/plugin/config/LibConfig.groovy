@@ -19,6 +19,7 @@ class LibConfig {
                     targetSdkVersion 30
                     versionCode code
                     versionName name
+                    multiDexEnabled true
                     consumerProguardFiles 'proguard-rules.pro'
                     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                 }
