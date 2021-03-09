@@ -43,10 +43,10 @@ class LibConfig {
 //                androidExtensions {
 //                    experimental = true
 //                }
-                dexOptions {
-                    preDexLibraries true
-                    maxProcessCount 8
-                }
+//                dexOptions {
+//                    preDexLibraries true
+//                    maxProcessCount 8
+//                }
                 compileOptions {
                     sourceCompatibility '1.8'
                     targetCompatibility '1.8'
