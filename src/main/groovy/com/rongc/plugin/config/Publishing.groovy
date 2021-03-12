@@ -119,7 +119,7 @@ class Publishing {
 
                     android.libraryVariants.all { variant ->
                         if (variant.name == 'release') {
-                            owner.classpath += variant.getJavaCompileProvider().classpath
+                            owner.classpath += variant.getJavaCompile().classpath
                         }
                     }
 
