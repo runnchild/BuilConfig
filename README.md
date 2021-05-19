@@ -9,7 +9,7 @@ buildscript {
   ...
   repositories {
     ...
-    // 添加jitpack
+    // 添加jitpack仓库
     maven { url 'https://jitpack.io' }
   }
   
@@ -58,5 +58,26 @@ plugins { id 'com.rongc.lib' }
 
 dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle"
+}
+```
+
+> 非app的library带有发布到本地和远程仓库功能，在根目录下的gradle.properties下添加：
+```
+// 例如依赖为 implementation "com.rongc:config:2.0.3"，则
+group_id=com.rongc
+module_name=config
+VERSION_NAME=2.0.3
+// 发布远程是bintray的，现在bintray不再维护如下就没必要配置了
+
+repo_desc=Oh hi,It is name nice project ,is not it?
+repo_website=https://github.com/runnchild/BuildConfig
+repo_userOrg=runningchild
+```
+sync完成后gradle会新增publish系列任务，[publishDebugPublicationToMavenLocal]就是发布到本地的。默认地址在 “用户目录/.m2/repository/”下。
+使用前需要添加本地仓地址
+```
+repositories {
+    ...
+    mavenLocal()
 }
 ```
