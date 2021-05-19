@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    apply from: "https://gitee.com/qiurongc/codes/603dbu4epyqjg1otr5ckz98/raw?blob_name=gistfile1.txt"
-//      apply from: "../config.gradle"
+//    apply from: "https://gitee.com/qiurongc/codes/603dbu4epyqjg1otr5ckz98/raw?blob_name=gistfile1.txt"
+      apply from: "config.gradle"
     repositories {
         mavenLocal()
         google()
