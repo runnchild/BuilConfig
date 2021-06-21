@@ -1,5 +1,5 @@
 ext {
-    kotlin_version = "1.4.31"
+    kotlin_version = "1.4.32"
     gradle_version = "7.0.0-alpha13"
     aspect_version = "2.0.10"
     config_version = '2.0.1'

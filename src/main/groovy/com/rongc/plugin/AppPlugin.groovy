@@ -21,7 +21,7 @@ class AppPlugin implements Plugin<Project> {
                     applicationId findProperty('APPLICATION_ID')
                     resConfigs "zh"
                     ndk {
-                        abiFilters 'armeabi-v7a', 'x86'
+                        abiFilters 'armeabi-v7a'
                     }
                 }
                 buildTypes {

@@ -83,11 +83,14 @@ class LibConfig {
                 compileOnly "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
                 implementation "androidx.multidex:multidex:2.0.1"
-                implementation 'androidx.activity:activity:1.1.0'
-                implementation 'androidx.activity:activity-ktx:1.1.0'
-                implementation 'androidx.fragment:fragment-ktx:1.2.5'
-                implementation 'androidx.core:core-ktx:1.3.2'
-                implementation 'androidx.appcompat:appcompat:1.2.0'
+                def activity = "1.2.3"
+                implementation "androidx.activity:activity:$activity"
+                implementation "androidx.activity:activity-ktx:$activity"
+
+                def fragment_version = "1.3.4"
+                implementation "androidx.fragment:fragment-ktx:$fragment_version"
+                implementation 'androidx.core:core-ktx:1.5.0'
+                implementation 'androidx.appcompat:appcompat:1.3.0'
                 implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
                 implementation 'com.google.android.material:material:1.3.0-beta01'
                 testImplementation 'junit:junit:4.13.2'
